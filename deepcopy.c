@@ -29,15 +29,17 @@ struct Node *copy_list(struct Node *head) {
     while (ptr) {
         struct Node *node = create_node(ptr->val);
 
-        if (!copy) 
+        if (copy == NULL) {
             copy = node;
-        else 
-            for (struct Node *p = copy; p != NULL; p = p->next) 
-                if (!p->next) {
+        } else { 
+            for (struct Node *p = copy; p != NULL; p = p->next) { 
+                if (p->next == NULL) {
                     p->next = node;
                     break;
                 }
-
+            }
+        }
+        
         ptr = ptr->next;
     }
 
