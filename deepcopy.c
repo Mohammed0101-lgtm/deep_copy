@@ -3,14 +3,17 @@
 
 struct Node {
     int val;
+
     struct Node *next;
     struct Node *random;
 };
 
 struct Node *create_node(int val) {
     struct Node *n = (struct Node *)malloc(sizeof(struct Node));
-    if (!n) 
+    if (n == NULL) {
+        fprintf(stderr, "malloc failed\n");
         return NULL;
+    }
 
     n->val    = val;
     n->random = NULL;
