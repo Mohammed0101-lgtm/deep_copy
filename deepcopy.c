@@ -47,10 +47,10 @@ struct Node *copy_list(struct Node *head) {
 }
 
 void connect_random(struct Node *head, struct Node *n, int index) {
-    struct Node *ptr = head;
-    int itr          = 0;
+    struct Node *ptr  =  head;
+    int itr           =  0;
 
-    while (ptr) {
+    while (ptr != NULL) {
         if (itr == index) {
             n->random = ptr;
             return;
@@ -62,14 +62,14 @@ void connect_random(struct Node *head, struct Node *n, int index) {
 }
 
 int get_index(struct Node *head, struct Node *node) {
-    if (!node->random) 
-        return -1;
+    if (node->random == NULL) return -1;
     
     int index = 0;
     for (struct Node *ptr = head; ptr != NULL; ptr = ptr->next) {
-        if (node->random == ptr) 
+        if (node->random == ptr) {
             return index;
-
+        }
+        
         index++;
     }
 
@@ -85,9 +85,9 @@ struct Node *deep_copy(struct Node *head) {
             p_1 = p_1->next, p_2 = p_2->next
         ) {
         
-        if (!p_1->random) 
+        if (p_1->random == NULL) { 
             p_2->random = NULL;
-        else {
+        } else {
             int index = get_index(head, p_1);
             
             if (index == -1) 
@@ -103,9 +103,9 @@ struct Node *deep_copy(struct Node *head) {
 void freeList(struct Node *head) {
     struct Node *ptr = head;
     
-    while (ptr) {
-        struct Node *temp = ptr;
-        ptr               = ptr->next;
+    while (ptr == NULL) {
+        struct Node *temp  =  ptr;
+        ptr                =  ptr->next;
         
         free(temp);
     }
