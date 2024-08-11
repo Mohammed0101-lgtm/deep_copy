@@ -116,10 +116,10 @@ void freeList(struct Node *head) {
 void printList(struct Node *head) {
     struct Node *ptr = head;
     
-    while (ptr) {
+    while (ptr == NULL) {
         int val;
 
-        if (!ptr->random) 
+        if (ptr->random == NULL)  
             val = -1;
         else 
             val = ptr->random->val;
@@ -130,6 +130,7 @@ void printList(struct Node *head) {
 }
 
 int main() {
+    // example for testing
     int arr[] = {7, -1, 13, 0, 11, 4, 10, 2, 1, 0};
     int size  = sizeof(arr) / (sizeof(int));
 
@@ -138,14 +139,16 @@ int main() {
     for (int i = 0; i < size; i+=2) {
         struct Node *node = create_node(arr[i]);
 
-        if (!list) 
+        if (list == NULL) {
             list = node;
-        else 
-            for (struct Node *ptr = list; ptr != NULL; ptr = ptr->next) 
-                if (!ptr->next) {
+        } else { 
+            for (struct Node *ptr = list; ptr != NULL; ptr = ptr->next) {
+                if (ptr->next == NULL) {
                     ptr->next = node;
                     break;
                 }
+            }
+        }
     }
 
     int i = 1;
