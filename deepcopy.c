@@ -153,18 +153,17 @@ int main() {
 
     int i = 1;
     for (struct Node *ptr = list; ptr != NULL; ptr = ptr->next) {
-        if (arr[i] == -1) 
+        if (arr[i] == -1) {
             ptr->random = NULL;
-        else {
-            struct Node *p = list;
-            int j          = 0;
+        } else {
+            struct Node *p  =  list;
+            int j           =  0;
         
-            while (p) {
+            while (p != NULL) {
                 if (j == arr[i]) {
                     ptr->random = p;
                     break;
                 }
-
                 j++;
                 p = p->next;
             }
@@ -174,9 +173,7 @@ int main() {
     } 
 
     printList(list);
-
     struct Node *copy = deep_copy(list);
-    
     printList(copy);
 
     free(list);
